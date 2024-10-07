@@ -20,27 +20,15 @@
   };
 </script>
 
-<div class="map-container mx-auto">
-  <div class="map m-auto">
+<div class="w-full h-full">
+  
     <LeafletMap options={mapOptions}>
       <TileLayer url={tileUrl} options={tileLayerOptions} />
       <Marker latLng={[property.latitude, property.longitude]}>
         <Popup>This is where the property is located</Popup>
       </Marker>
     </LeafletMap>
-  </div>
+ 
 </div>
 
-<style>
-  .map-container {
-    height: 35vw;
-    width: 55vw;
-    display: flex;
-  }
-  .map {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    position: relative;
-  }
-</style>
+

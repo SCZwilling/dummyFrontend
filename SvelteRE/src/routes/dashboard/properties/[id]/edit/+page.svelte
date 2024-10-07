@@ -140,140 +140,159 @@
   }
 </script>
 
-<section>
-  <div class="flex flex-col">
-    <div class="basis-1/2">
-      <form
-        method="POST"
-        on:submit|preventDefault={editProperty}
-        enctype="multipart/form-data"
-        class="form-control w-full max-w-xs mx-auto pb-8"
-      >
-        <div>
-          <label for="type" class="label"> Property Type</label>
-          <select
-            name="PropertyTypeId"
-            id="type"
-            class="select select-bordered select-sm w-full max-w-xs"
-            bind:value={typeId}
-          >
-            <option selected disabled value={-1}>Previous: {data.property.type}</option>
-            {#each data.types as type}
-              <option value={type.id}>
-                {type.value}
-              </option>
-            {/each}
-          </select>
-        </div>
-        <div>
-          <label for="status" class="label">Property Status</label>
-          <select
-            name="PropertyStatusId"
-            id="status"
-            class="select select-bordered select-sm w-full max-w-xs"
-            bind:value={statusId}
-          >
-            <option selected disabled value={-1}>Previous: {data.property.status}</option>
-            {#each data.statuses as status}
-              <option value={status.id}>
-                {status.value}
-              </option>
-            {/each}
-          </select>
-        </div>
-        <div>
-          <label for="currency" class="label">Currency</label>
-          <select
-            name="CurrencyId"
-            id="currency"
-            class="select select-bordered select-sm w-full max-w-xs"
-            bind:value={currencyId}
-          >
-            <option selected disabled value={-1}>Previous: {data.property.currency}</option>
-            {#each data.currencies as currency}
-              <option value={currency.id}>
-                {currency.value}
-              </option>
-            {/each}
-          </select>
-        </div>
-        <div>
-          <label for="price" class="label">Price</label>
-          <input
-            type="number"
-            id="price"
-            name="Price"
-            bind:value={price}
-            class="input input-bordered input-sm"
-            placeholder="Enter new price"
-          />
-        </div>
-        <div>
-          <label for="endDate" class="label">End Date</label>
-          <input
-            bind:value={endDate}
-            type="date"
-            id="endDate"
-            name="EndDate"
-            class="input input-bordered input-sm"
-          />
-        </div>
-        <div>
-          <label for="choose-location" class="label">Property Location</label>
-          <button
-            on:click|preventDefault={() => editLocationModal.showModal()}
-            class="btn btn-sm btn-info">Edit Location</button
-          >
-        </div>
-        <button type="submit" disabled={!pendingChanges || loading} class="btn btn-accent p-2 mt-2">
-          {loading ? "Saving changes..." : "Save Changes"}
-        </button>
-      </form>
+<section class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark pt-6 pb-12">
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl font-bold mb-8 text-center">Edit Property</h1>
+    <div class="max-w-2xl mx-auto">
+      <div class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-md p-6">
+        <form
+          method="POST"
+          on:submit|preventDefault={editProperty}
+          enctype="multipart/form-data"
+          class="space-y-6"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="type" class="block text-sm font-medium mb-2">Property Type</label>
+              <select
+                name="PropertyTypeId"
+                id="type"
+                class="select select-bordered w-full bg-surface-light dark:bg-surface-dark"
+                bind:value={typeId}
+              >
+                <option selected disabled value={-1}>Previous: {data.property.type}</option>
+                {#each data.types as type}
+                  <option value={type.id}>{type.value}</option>
+                {/each}
+              </select>
+            </div>
+            <div>
+              <label for="status" class="block text-sm font-medium mb-2">Property Status</label>
+              <select
+                name="PropertyStatusId"
+                id="status"
+                class="select select-bordered w-full bg-surface-light dark:bg-surface-dark"
+                bind:value={statusId}
+              >
+                <option selected disabled value={-1}>Previous: {data.property.status}</option>
+                {#each data.statuses as status}
+                  <option value={status.id}>{status.value}</option>
+                {/each}
+              </select>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="currency" class="block text-sm font-medium mb-2">Currency</label>
+              <select
+                name="CurrencyId"
+                id="currency"
+                class="select select-bordered w-full bg-surface-light dark:bg-surface-dark"
+                bind:value={currencyId}
+              >
+                <option selected disabled value={-1}>Previous: {data.property.currency}</option>
+                {#each data.currencies as currency}
+                  <option value={currency.id}>{currency.value}</option>
+                {/each}
+              </select>
+            </div>
+            <div>
+              <label for="price" class="block text-sm font-medium mb-2">Price</label>
+              <input
+                type="number"
+                id="price"
+                name="Price"
+                bind:value={price}
+                class="input input-bordered w-full bg-surface-light dark:bg-surface-dark"
+                placeholder="Enter new price"
+              />
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="endDate" class="block text-sm font-medium mb-2">End Date</label>
+              <input
+                bind:value={endDate}
+                type="date"
+                id="endDate"
+                name="EndDate"
+                class="input input-bordered w-full bg-surface-light dark:bg-surface-dark"
+              />
+            </div>
+            <div>
+              <label for="choose-location" class="block text-sm font-medium mb-2">Property Location</label>
+              <button
+                on:click|preventDefault={() => editLocationModal.showModal()}
+                class="btn btn-info w-full"
+              >
+                Edit Location
+              </button>
+            </div>
+          </div>
+          
+          <div class="flex justify-end mt-6">
+            <button 
+              type="submit" 
+              disabled={!pendingChanges || loading} 
+              class="btn btn-accent text-white dark:text-gray-900 px-6 hover:bg-primary-dark dark:hover:bg-primary-light"
+            >
+              {loading ? "Saving changes..." : "Save Changes"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-  <div>
-    <div class="flex flex-col">
-      <div class="flex flex-col p-2">
-        <div class="flex mx-auto">
-          <p class="inline-flex text-lg pr-2">Image Gallery</p>
+
+  <div class="mt-12">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-md p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-semibold">Image Gallery</h2>
           <button
             on:click={() => selectImageModal.showModal()}
-            class="btn btn-success btn-square btn-sm"
-            ><svg
+            class="btn btn-success btn-sm"
+          >
+            Add Image
+            <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-badge-plus"
-              ><path
-                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"
-              /><line x1="12" x2="12" y1="8" y2="16" /><line x1="8" x2="16" y1="12" y2="12" /></svg
-            ></button
-          >
+              class="ml-2"
+            >
+              <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+              <line x1="12" x2="12" y1="8" y2="16" />
+              <line x1="8" x2="16" y1="12" y2="12" />
+            </svg>
+          </button>
         </div>
-        <div class="flex align-middle justify-center h-full p-2">
-          <div class="flex align-middle justify-center w-4/5 max-w-lg">
-            {#key data.property.images}
-              <Carousel>
-                {#each data.property.images as image (image.id)}
-                  <div class="relative">
-                    <img
-                      src={image.value}
-                      alt="{data.property.type} {data.property.status}"
-                      class="mx-auto w-full"
-                    />
+        <div class="w-full">
+          {#key data.property.images}
+            <Carousel>
+              {#each data.property.images as image (image.id)}
+                <div class="relative">
+                  <img
+                    src={image.value}
+                    alt="{data.property.type} {data.property.status}"
+                    class="w-full h-64 object-cover rounded-lg"
+                  />
+                  <div class="absolute top-2 right-2 space-x-2">
                     <button
                       on:click={() => {
                         selectedImageId = image.id;
                         editImageModal.showModal();
                       }}
-                      class="btn btn-square btn-info btn-sm absolute top-2 right-10"
-                      ><svg
+                      class="btn btn-circle btn-sm btn-info"
+                    >
+                      <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="none"
@@ -281,19 +300,20 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="h-5 w-5 lucide lucide-pencil"
-                        ><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path
-                          d="m15 5 4 4"
-                        /></svg
-                      ></button
-                    >
+                        class="h-4 w-4"
+                      >
+                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                        <path d="m15 5 4 4" />
+                      </svg>
+                    </button>
                     <button
                       on:click={() => {
                         selectedImageId = image.id;
                         deleteImageModal.showModal();
                       }}
-                      class="btn btn-square btn-error btn-sm absolute top-2 right-1"
-                      ><svg
+                      class="btn btn-circle btn-sm btn-error"
+                    >
+                      <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="none"
@@ -301,22 +321,20 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="h-5 w-5 lucide lucide-trash-2"
-                        ><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path
-                          d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"
-                        /><line x1="10" x2="10" y1="11" y2="17" /><line
-                          x1="14"
-                          x2="14"
-                          y1="11"
-                          y2="17"
-                        /></svg
-                      ></button
-                    >
+                        class="h-4 w-4"
+                      >
+                        <path d="M3 6h18" />
+                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                        <line x1="10" x2="10" y1="11" y2="17" />
+                        <line x1="14" x2="14" y1="11" y2="17" />
+                      </svg>
+                    </button>
                   </div>
-                {/each}
-              </Carousel>
-            {/key}
-          </div>
+                </div>
+              {/each}
+            </Carousel>
+          {/key}
         </div>
       </div>
     </div>
@@ -324,7 +342,7 @@
 </section>
 
 <dialog bind:this={deleteImageModal} class="modal text-left">
-  <div class="modal-box">
+  <div class="modal-box bg-surface-light dark:bg-surface-dark">
     <h3 class="font-bold text-lg">Are you sure you want to delete this image?</h3>
     <p class="py-4">This action cannot be undone!</p>
     <div class="modal-action">
@@ -339,7 +357,7 @@
 </dialog>
 
 <dialog bind:this={editImageModal} class="modal text-left">
-  <div class="modal-box">
+  <div class="modal-box bg-surface-light dark:bg-surface-dark">
     <h3 class="pb-2 font-bold text-lg">Edit Image</h3>
     {#if selectedImage}
       <img
@@ -351,7 +369,7 @@
     <input
       type="file"
       accept=".jpg, .jpeg, .png"
-      class="file-input file-input-bordered file-input-sm w-full max-w-xs"
+      class="file-input file-input-bordered file-input-sm w-full max-w-xs bg-surface-light dark:bg-surface-dark"
       on:change={setImage}
     />
     <div class="modal-action">

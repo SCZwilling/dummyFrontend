@@ -70,7 +70,7 @@
   }
 </script>
 
-<section class="flex flex-row">
+<section class="flex flex-row bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark pt-4">
   <div class="basis-full">
     <form
       method="POST"
@@ -78,12 +78,12 @@
       enctype="multipart/form-data"
       class="form-control w-full max-w-xs mx-auto pb-8"
     >
-      <div>
-        <label for="type" class="label"> Property Type</label>
+      <div class="mb-4">
+        <label for="type" class="label text-lg"> Property Type</label>
         <select
           name="PropertyTypeId"
           id="type"
-          class="select select-bordered select-sm w-full max-w-xs"
+          class="select select-bordered select-sm w-full max-w-xs bg-surface-light dark:bg-surface-dark"
           bind:value={typeId}
         >
           <option selected disabled>Select a property type</option>
@@ -94,12 +94,12 @@
           {/each}
         </select>
       </div>
-      <div>
-        <label for="status" class="label">Property Status</label>
+      <div class="mb-4">
+        <label for="status" class="label text-lg">Property Status</label>
         <select
           name="PropertyStatusId"
           id="status"
-          class="select select-bordered select-sm w-full max-w-xs"
+          class="select select-bordered select-sm w-full max-w-xs bg-surface-light dark:bg-surface-dark"
           bind:value={statusId}
         >
           <option selected disabled>Select a property status</option>
@@ -110,12 +110,12 @@
           {/each}
         </select>
       </div>
-      <div>
-        <label for="currency" class="label">Currency</label>
+      <div class="mb-4">
+        <label for="currency" class="label text-lg">Currency</label>
         <select
           name="CurrencyId"
           id="currency"
-          class="select select-bordered select-sm w-full max-w-xs"
+          class="select select-bordered select-sm w-full max-w-xs bg-surface-light dark:bg-surface-dark"
           bind:value={currencyId}
         >
           <option selected disabled>Select a currency</option>
@@ -126,48 +126,45 @@
           {/each}
         </select>
       </div>
-      <div>
-        <label for="price" class="label">Price</label>
+      <div class="mb-4">
+        <label for="price" class="label text-lg">Price</label>
         <input
           type="number"
           id="price"
           name="Price"
           bind:value={price}
-          class="input input-bordered input-sm"
+          class="input input-bordered input-sm bg-surface-light dark:bg-surface-dark"
           placeholder="Enter price"
         />
       </div>
-      <div>
-        <label for="endDate" class="label">Listing Expiry Date</label>
+      <div class="mb-4">
+        <label for="endDate" class="label text-lg">Listing Expiry Date</label>
         <input
           bind:value={endDate}
           type="date"
           id="endDate"
           name="EndDate"
-          class="input input-bordered input-sm"
+          class="input input-bordered input-sm bg-surface-light dark:bg-surface-dark"
         />
       </div>
-      <div>
-        <label for="choose-location" class="label">Property Location</label>
+      <div class="mb-4">
+        <label for="choose-location" class="label text-lg">Property Location</label>
         <button
           on:click|preventDefault={() => locationModal.showModal()}
-          class="btn btn-sm btn-info">Choose Location</button
-        >
+          class="btn btn-sm btn-info"
+        >Choose Location</button>
         {#if latitude === centerLat && longitude === centerLong}
           <p class="inline-flex text-error font-semibold pl-2">Location not chosen</p>
         {:else}
           <p class="inline-flex text-success font-semibold pl-2">Location chosen</p>
         {/if}
       </div>
-      <div class="pb-4">
-        <label for="add-images" class="label">Property Images</label>
+      <div class="pb-4 mb-4">
+        <label for="add-images" class="label text-lg">Property Images</label>
         <button on:click|preventDefault={() => imageModal.showModal()} class="btn btn-sm btn-info"
-          >Select Images</button
-        >
+        >Select Images</button>
         {#if images && images.length > 1}
-          <p class="inline-flex text-success font-semibold pl-4">
-            {images.length} images selected
-          </p>
+          <p class="inline-flex text-success font-semibold pl-4">{images.length} images selected</p>
         {:else if images && images.length === 1}
           <p class="inline-flex text-info font-semibold pl-4">1 image selected</p>
         {:else}

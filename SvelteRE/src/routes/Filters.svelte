@@ -43,97 +43,94 @@
   }
 </script>
 
-<div class="flex flex-col menu bg-base-200 rounded-box">
-  <h2 class="text-center text-lg">Filters</h2>
-  <ul class="mx-auto">
-    <li>
-      <div>
-        <label for={mobileLayout ? "m-minPrice" : "minPrice"} class="label">Min</label>
-        <input
-          type="number"
-          min={0}
-          max={9999999}
-          id={mobileLayout ? "m-minPrice" : "minPrice"}
-          bind:value={minPrice}
-          class="input input-bordered input-sm w-full max-w-xs"
-        />
-      </div>
+<div class="flex flex-col p-4 rounded-lg shadow-lg bg-surface-light dark:bg-gray-800 text-text-light dark:text-white max-w-md w-full mx-auto border border-gray-200 dark:border-gray-300">
+  <h2 class="text-center text-xl font-bold text-text-light dark:text-white mb-4">Filter Options</h2>
+  <ul class="space-y-3">
+    <!-- Min Price Input -->
+    <li class="flex flex-col">
+      <label for={mobileLayout ? "m-minPrice" : "minPrice"} class="label text-text-light dark:text-white text-base">Min Price</label>
+      <input
+        type="number"
+        min={0}
+        max={9999999}
+        id={mobileLayout ? "m-minPrice" : "minPrice"}
+        bind:value={minPrice}
+        class="input input-bordered bg-background-light dark:bg-gray-700 text-text-light dark:text-white input-md w-full"
+      />
     </li>
-    <li>
-      <div>
-        <label for={mobileLayout ? "m-maxPrice" : "maxPrice"} class="label">Max</label>
-        <input
-          id={mobileLayout ? "m-maxPrice" : "maxPrice"}
-          type="number"
-          min={0}
-          max={9999999}
-          bind:value={maxPrice}
-          class="input input-bordered input-sm w-full max-w-xs"
-        />
-      </div>
+
+    <!-- Max Price Input -->
+    <li class="flex flex-col">
+      <label for={mobileLayout ? "m-maxPrice" : "maxPrice"} class="label text-text-light dark:text-white text-base">Max Price</label>
+      <input
+        id={mobileLayout ? "m-maxPrice" : "maxPrice"}
+        type="number"
+        min={0}
+        max={9999999}
+        bind:value={maxPrice}
+        class="input input-bordered bg-background-light dark:bg-gray-700 text-text-light dark:text-white input-md w-full"
+      />
     </li>
-    <li>
-      <div>
-        <label for={mobileLayout ? "m-currencyId" : "currencyId"} class="label">Currency</label>
-        <select
-          class="select select-bordered select-sm w-full max-w-xs"
-          bind:value={currencyId}
-          id={mobileLayout ? "m-currencyId" : "currencyId"}
-        >
-          <option selected value={0}>Any</option>
-          {#each data.currencies as currency}
-            <option value={currency.id}>
-              {currency.value}
-            </option>
-          {/each}
-        </select>
-      </div>
+
+    <!-- Currency Dropdown -->
+    <li class="flex flex-col">
+      <label for={mobileLayout ? "m-currencyId" : "currencyId"} class="label text-text-light dark:text-white text-base">Currency</label>
+      <select
+        class="select select-bordered bg-background-light dark:bg-gray-700 text-text-light dark:text-white text-base w-full"
+        bind:value={currencyId}
+        id={mobileLayout ? "m-currencyId" : "currencyId"}
+      >
+        <option selected value={0}>Any</option>
+        {#each data.currencies as currency}
+          <option value={currency.id}>
+            {currency.value}
+          </option>
+        {/each}
+      </select>
     </li>
-    <li>
-      <div>
-        <label for={mobileLayout ? "m-typeId" : "typeId"} class="label">Type</label>
-        <select
-          class="select select-bordered select-sm w-full max-w-xs"
-          bind:value={typeId}
-          id={mobileLayout ? "m-typeId" : "typeId"}
-        >
-          <option selected value={0}>Any</option>
-          {#each data.types as type}
-            <option value={type.id}>
-              {type.value}
-            </option>
-          {/each}
-        </select>
-      </div>
+
+    <!-- Type Dropdown -->
+    <li class="flex flex-col">
+      <label for={mobileLayout ? "m-typeId" : "typeId"} class="label text-text-light dark:text-white text-base">Type</label>
+      <select
+        class="select select-bordered bg-background-light dark:bg-gray-700 text-text-light dark:text-white text-base w-full"
+        bind:value={typeId}
+        id={mobileLayout ? "m-typeId" : "typeId"}
+      >
+        <option selected value={0}>Any</option>
+        {#each data.types as type}
+          <option value={type.id}>
+            {type.value}
+          </option>
+        {/each}
+      </select>
     </li>
-    <li>
-      <div>
-        <label for={mobileLayout ? "m-statusId" : "statusId"} class="label">Status</label>
-        <select
-          class="select select-bordered select-sm w-full max-w-xs"
-          bind:value={statusId}
-          id={mobileLayout ? "m-statusId" : "statusId"}
-        >
-          <option selected value={0}>Any</option>
-          {#each data.statuses as status}
-            <option value={status.id}>
-              {status.value}
-            </option>
-          {/each}
-        </select>
-      </div>
+
+    <!-- Status Dropdown -->
+    <li class="flex flex-col">
+      <label for={mobileLayout ? "m-statusId" : "statusId"} class="label text-text-light dark:text-white text-base">Status</label>
+      <select
+        class="select select-bordered bg-background-light dark:bg-gray-700 text-text-light dark:text-white text-base w-full"
+        bind:value={statusId}
+        id={mobileLayout ? "m-statusId" : "statusId"}
+      >
+        <option selected value={0}>Any</option>
+        {#each data.statuses as status}
+          <option value={status.id}>
+            {status.value}
+          </option>
+        {/each}
+      </select>
     </li>
-    <li>
-      <div class="flex">
-        <button class="btn btn-neutral min-w-full mx-auto" on:click={clearFilters}>
-          Clear Filters
-        </button>
-      </div>
-      <div class="flex">
-        <button class="btn btn-neutral min-w-full mx-auto" on:click={filter}>
-          Apply Filters
-        </button>
-      </div>
+
+    <!-- Buttons -->
+    <li class="flex flex-row space-x-2">
+      <button class="btn bg-accent-light hover:bg-accent-light/80 dark:bg-blue-400 dark:hover:bg-blue-300 btn-md w-1/2 text-white font-semibold" on:click={clearFilters}>
+        Clear
+      </button>
+      <button class="btn bg-primary-light hover:bg-primary-light/80 dark:bg-teal-600 dark:hover:bg-teal-500 btn-md w-1/2 text-white font-semibold" on:click={filter}>
+        Apply
+      </button>
     </li>
   </ul>
 </div>
