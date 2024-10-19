@@ -8,7 +8,7 @@
     const property = data?.property;
   </script>
 
-  <div class="container mx-auto px-4 py-8 bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+  <div class=" mx-auto px-4 py-8 bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
     <div class="flex flex-col lg:flex-row gap-8 mb-8">
       <!-- Left side: Images -->
       <div class="lg:w-1/2">

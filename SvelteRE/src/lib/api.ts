@@ -3,7 +3,7 @@ import { env } from "$env/dynamic/public";
 import type { SendOptions } from "./types";
 
 // const base = env.PUBLIC_OVERRIDE_BASE_URL ?? "https://realestateapp-api.fly.dev";
-const base = "http://10.137.55.127:5000";
+const base = "http://172.26.128.1:5000";
 
 async function send(
   fetch: typeof globalThis.fetch,

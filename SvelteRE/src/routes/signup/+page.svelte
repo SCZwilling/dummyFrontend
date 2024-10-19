@@ -39,13 +39,13 @@
         </h1>
         <form method="POST" use:enhance={register} class="space-y-4 md:space-y-6">
           <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">Email</label>
+            <label for="email" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">Phone</label>
             <input
               type="text"
               name="email"
               id="email"
               class="bg-background-light dark:bg-background-dark border-gray-600 placeholder-gray-400 text-text-light dark:text-text-dark focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg block w-full p-2.5"
-              placeholder="Enter email"
+              placeholder="Enter phone number"
               required
             />
             {#if form?.emailError}

@@ -4,7 +4,7 @@ import type { PageLoad } from "./$types";
 
 export const ssr = false;
 
-export const load: PageLoad = async ({ fetch }) => {
+export const load: PageLoad = async ({ fetch}) => {
   const [types, statuses, currencies] = await Promise.all([
     api.get(fetch, "PropertyType/list"),
     api.get(fetch, "PropertyStatus/list"),

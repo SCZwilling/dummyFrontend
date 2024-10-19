@@ -58,7 +58,7 @@
     ];
   </script>
   
-  <main class="container mx-auto px-4 py-8 bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+  <main class=" mx-auto px-4 py-8 bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
     <h1 class="text-4xl font-bold text-center mb-6">Our Services</h1> 
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

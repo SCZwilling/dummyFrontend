@@ -6,11 +6,11 @@
   let email = "";
   let phone = "";
   let message = "";
-  let propertyType = "";
   let successMessage = ""; 
 
   function getPrefilledLink() {
-    return `https://docs.google.com/forms/d/e/1FAIpQLSe7--7Ebq4bHL7I4rzWYt-hgv9ptaZqwa0T_zMEQJNeXjN6uA/formResponse?usp=pp_url&entry.1010428604=${encodeURIComponent(firstName)}&entry.271603404=${encodeURIComponent(lastName)}&entry.1238890979=${encodeURIComponent(email)}&entry.2055772759=${encodeURIComponent(phone)}&entry.1606503875=${encodeURIComponent(propertyType)}&entry.629860105=${encodeURIComponent(message)}&submit=Submit`;
+    // return `https://docs.google.com/forms/d/e/1FAIpQLSe7--7Ebq4bHL7I4rzWYt-hgv9ptaZqwa0T_zMEQJNeXjN6uA/formResponse?usp=pp_url&entry.1010428604=${encodeURIComponent(firstName)}&entry.271603404=${encodeURIComponent(lastName)}&entry.1238890979=${encodeURIComponent(email)}&entry.2055772759=${encodeURIComponent(phone)}&entry.1606503875=${encodeURIComponent(propertyType)}&entry.629860105=${encodeURIComponent(message)}&submit=Submit`;
+    return `https://docs.google.com/forms/d/e/1FAIpQLSeZM-rk4PxWgA2C-VPTvuIyhAnaV3MXfAOIa3OIV5kjsxTGEA/viewform?usp=pp_url&entry.185973987=${encodeURIComponent(firstName)}&entry.1626136969=${encodeURIComponent(lastName)}&entry.1602143526=${encodeURIComponent(phone)}&entry.2117648981=${encodeURIComponent(email)}&entry.874932534=${encodeURIComponent(message)}&submit=Submit`;
   }
 
   async function handleSubmit(event) {
@@ -26,7 +26,6 @@
     lastName = "";
     email = "";
     phone = "";
-    propertyType = "";
     message = "";
 
     setTimeout(() => {
@@ -36,7 +35,7 @@
 </script>
 
 <div
-  class="container mx-auto px-4 py-8 mt-[-8] bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark"
+  class=" mx-auto px-4 py-8 mt-[-8] bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark"
 >
   <div class="flex justify-center">
     <div
@@ -99,7 +98,7 @@
                 />
               </div>
               <div>
-                <label for="lastName" class="block mb-2">Last name *</label>
+                <label for="lastName" class="block mb-2">Last name</label>
                 <input
                   type="text"
                   id="lastName"
@@ -111,45 +110,31 @@
             </div>
 
             <div class="mb-4">
-              <label for="email" class="block mb-2">Email *</label>
-              <input
-                type="email"
-                id="email"
-                bind:value={email}
-                required
-                class="w-full px-3 py-2 border rounded bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark"
-              />
-            </div>
-
-            <div class="mb-4">
-              <label for="phone" class="block mb-2">Phone</label>
+              <label for="phone" class="block mb-2">Phone *</label>
               <input
                 type="text"
                 id="phone"
+                required
                 bind:value={phone}
                 class="w-full px-3 py-2 border rounded bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark"
               />
             </div>
 
             <div class="mb-4">
-              <label for="propertyType" class="block mb-2">Property Type</label>
-              <select
-                id="propertyType"
-                bind:value={propertyType}
+              <label for="email" class="block mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                bind:value={email}
                 class="w-full px-3 py-2 border rounded bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark"
-              >
-                <option value="">Please select...</option>
-                <option value="home">Home</option>
-                <option value="hostel">Hostel</option>
-                <option value="shop">Shop</option>
-                <option value="other">Other</option>
-              </select>
+              />
             </div>
 
             <div class="mb-4">
-              <label for="message" class="block mb-2">Message</label>
+              <label for="message" class="block mb-2">Service/Inquiry Wanted *</label>
               <textarea
                 id="message"
+                required
                 bind:value={message}
                 rows="4"
                 class="w-full px-3 py-2 border rounded bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark"

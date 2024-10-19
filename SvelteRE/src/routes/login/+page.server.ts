@@ -12,13 +12,15 @@ export const actions: Actions = {
   default: async ({ cookies, request }) => {
     const data = await request.formData();
     const body = {
-      username: data.get("username") as string,
+      phoneNumber: data.get("phonenumber") as string,
       password: data.get("password") as string,
     };
+    // console.log(body);
     const response = await api.post(fetch, "api/Authenticate/login", null, body);
+    console.log(response.data);
     if (response.status === 200) {
       const userInfo: UserInfo = {
-        username: data.get("username") as string,
+        phoneNumber: data.get("phonenumber") as string,
         roles: response.data.roles,
         token: response.data.token,
       };

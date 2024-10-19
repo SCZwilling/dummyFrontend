@@ -8,13 +8,13 @@ export const load: PageServerLoad = async ({ locals }) => {
 };
 
 function validateEmail(email: string) {
-  if (
-    !email.match(
-      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
-    )
-  )
-    return { error: "Invalid email address", email: null };
-  return { error: null, email: email.trim() };
+  // if (
+  //   !email.match(
+  //     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
+  //   )
+  // )
+  //   return { error: "Invalid email address", email: null };
+  return { error: null, phoneNumber: email.trim() };
 }
 
 function validateUsername(username: string) {
@@ -42,18 +42,24 @@ function validatePassword(password: string) {
 export const actions: Actions = {
   default: async ({ request }) => {
     const data = await request.formData();
-    const { email, error: emailError } = validateEmail(data.get("email") as string);
+    const { phoneNumber, error: emailError } = validateEmail(data.get("email") as string);
     if (emailError) return fail(400, { emailError });
     const { username, error: usernameError } = validateUsername(data.get("username") as string);
     if (usernameError) return fail(400, { usernameError });
     const { password, error: passwordError } = validatePassword(data.get("password") as string);
     if (passwordError) return fail(400, { passwordError });
 
+    // const body = {
+    //   username,
+    //   password,
+    //   email,
+    // };
     const body = {
       username,
+      phoneNumber,
       password,
-      email,
     };
+    // console.log("body", body);
     const { status } = await api.post(fetch, "api/Authenticate/register", null, body);
 
     if (status === 200) throw redirect(303, "/login");

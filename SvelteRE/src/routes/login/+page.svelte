@@ -28,7 +28,7 @@
         loggingIn = false;
       } else {
         prepareToast({
-          message: `Logged in as ${formData.get("username")}`,
+          message: `Logged in as ${formData.get("phonenumber")}`,
           type: "success",
         });
       }
@@ -43,14 +43,14 @@
         <h1 class="text-xl font-bold leading-tight tracking-tight text-text-light dark:text-text-dark md:text-2xl">Login</h1>
         <form method="POST" use:enhance={login} class="space-y-4 md:space-y-6">
           <div>
-            <label for="username" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">Username</label>
+            <label for="phonenumber" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">Phone</label>
             <input
               type="text"
-              name="username"
-              id="username"
+              name="phonenumber"
+              id="phonenumber"
               required
               class="bg-background-light dark:bg-background-dark border-gray-600 placeholder-gray-400 text-text-light dark:text-text-dark focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg block w-full p-2.5"
-              placeholder="Enter username"
+              placeholder="Enter Phone Number"
             />
           </div>
           <div>

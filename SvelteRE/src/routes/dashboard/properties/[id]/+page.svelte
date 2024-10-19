@@ -33,7 +33,7 @@
   }
 </script>
 
-<div class="px-8 bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark pt-6">
+<div class="min-h-screen px-8 bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark pt-6">
   <div class="flex flex-col md:flex-row items-start justify-between">
     <!-- Property Image Carousel -->
     <div class="flex-shrink-0 w-full md:w-1/2">

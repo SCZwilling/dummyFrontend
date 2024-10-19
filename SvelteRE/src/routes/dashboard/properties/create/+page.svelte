@@ -7,8 +7,10 @@
   import { prepareToast } from "$lib/toast-utilities";
   import PickLocationModal from "$lib/components/PickLocationModal.svelte";
   import SelectImageModal from "$lib/components/SelectImageModal.svelte";
+  
 
   export let data: PageData;
+  
   let loading = false;
   let price: number;
   let typeId: number;
@@ -145,6 +147,7 @@
           id="endDate"
           name="EndDate"
           class="input input-bordered input-sm bg-surface-light dark:bg-surface-dark"
+          
         />
       </div>
       <div class="mb-4">
@@ -179,3 +182,10 @@
   <PickLocationModal bind:modal={locationModal} bind:latitude bind:longitude />
   <SelectImageModal bind:modal={imageModal} bind:images />
 </section>
+
+<style>
+ 
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0); 
+  }
+</style>
