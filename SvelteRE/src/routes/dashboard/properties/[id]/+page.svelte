@@ -104,7 +104,7 @@
       </div>
 
       <!-- Enhanced Property Info Section -->
-      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md max-w-full">
         <div class="py-2">
           <h2 class="font-bold text-xl">Listing Date</h2>
           <p class="text-gray-700 dark:text-gray-300">
@@ -118,9 +118,11 @@
           <h2 class="font-bold text-xl">Property Info</h2>
           <p class="font-semibold text-lg">{data.property.type}</p>
           <p class="font-semibold text-lg">{data.property.status}</p>
-          <p class="font-semibold text-lg">
-            {data.property.price} {data.property.currency}
-          </p>
+          <p class="font-semibold text-lg">{data.property.price} {data.property.currency}</p>
+        </div>
+        <div class="py-2 border-t border-gray-200 dark:border-gray-600 mt-4">
+          <h2 class="font-bold text-xl">Property Description</h2>
+          <p class="font-semibold text-lg break-all">{data.property.propertyInfo}</p>
         </div>
       </div>
     </div>

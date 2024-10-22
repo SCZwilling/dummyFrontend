@@ -26,6 +26,7 @@
   let selectImageModal: HTMLDialogElement;
   let editLocationModal: HTMLDialogElement;
   let selectedImage: File | null = null;
+  let propertyInfo = data.property.propertyInfo;
 
   $: pendingChanges =
     typeId !== -1 ||
@@ -34,7 +35,8 @@
     endDate !== data.property.endDate ||
     price !== data.property.price ||
     latitude !== data.property.latitude ||
-    longitude !== data.property.longitude;
+    longitude !== data.property.longitude ||
+    propertyInfo !== data.property.propertyInfo;
 
   async function editProperty() {
     loading = true;
@@ -229,6 +231,20 @@
               >
                 Edit Location
               </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="col-span-1 md:col-span-2">
+              <label for="propertyInfo" class="block text-sm font-medium mb-2">Property Description</label>
+              <input
+                type="text"
+                id="propertyInfo"
+                name="PropertyInfo"
+                bind:value={propertyInfo}
+                class="input input-bordered w-full bg-surface-light dark:bg-surface-dark"
+                placeholder="Enter property info like address, city, etc."
+              />
             </div>
           </div>
           

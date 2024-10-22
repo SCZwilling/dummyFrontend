@@ -112,7 +112,11 @@
   <div class="container mx-auto px-4">
     <!-- Header Section -->
     <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-16">
-      Discover Your Perfect Space
+      <span class="font-light">Discover Your Perfect Space </span>
+      <br>
+      <span class="font-light">With</span>
+      <br>
+      <span class="font-bold">Pakka Sauda Real Estate</span>
     </h2>
 
     <div class="flex flex-wrap justify-center gap-12 mb-24">

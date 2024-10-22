@@ -35,8 +35,8 @@
                 <p class="text-gray-600 dark:text-gray-400">{property.owner.username}</p>
               </div>
               <div class="flex justify-between">
-                <p class="font-bold text-gray-700 dark:text-gray-300">Email:</p>
-                <p class="text-gray-600 dark:text-gray-400">{property.owner.email}</p>
+                <p class="font-bold text-gray-700 dark:text-gray-300">Phone Number:</p>
+                <p class="text-gray-600 dark:text-gray-400">{property.owner.phoneNumber}</p>
               </div>
             </div>
           </div>
@@ -52,9 +52,7 @@
 
           <div class="bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-gray-700 p-4 rounded-lg shadow-md md:col-span-2">
             <h2 class="text-xl font-semibold mb-2">Description</h2>
-            <p class="text-gray-700 dark:text-gray-300">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut ipsam vitae officia, dolores quidem a fugit in, sit maiores dolor nobis quod optio laboriosam ab! Maiores nam aperiam quae unde. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique itaque voluptate aliquam fugiat rerum repudiandae cupiditate. Voluptatibus quidem nam sapiente ullam repellendus cum non commodi cumque assumenda perspiciatis, amet tenetur!
-            </p>
+            <p class="text-gray-700 dark:text-gray-300 break-all">{property.propertyInfo}</p>
           </div>
 
         </div>

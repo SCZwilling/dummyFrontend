@@ -17,10 +17,10 @@ export const actions: Actions = {
     };
     // console.log(body);
     const response = await api.post(fetch, "api/Authenticate/login", null, body);
-    console.log(response.data);
+    // console.log(response.data);
     if (response.status === 200) {
       const userInfo: UserInfo = {
-        phoneNumber: data.get("phonenumber") as string,
+        username: data.get("phonenumber") as string,
         roles: response.data.roles,
         token: response.data.token,
       };

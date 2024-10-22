@@ -22,9 +22,10 @@
   let longitude = centerLong;
   let imageModal: HTMLDialogElement;
   let locationModal: HTMLDialogElement;
+  let propertyInfo: string;
 
   function allFilled() {
-    if (price && typeId && statusId && currencyId && endDate) return true;
+    if (price && typeId && statusId && currencyId && endDate && propertyInfo) return true;
     return false;
   }
 
@@ -54,6 +55,7 @@
     form.append("Price", String(price));
     form.append("Latitude", latitude.toFixed(2));
     form.append("Longitude", longitude.toFixed(2));
+    form.append("PropertyInfo", propertyInfo);
     for (const image of images) {
       form.append("Images", image);
     }
@@ -147,7 +149,17 @@
           id="endDate"
           name="EndDate"
           class="input input-bordered input-sm bg-surface-light dark:bg-surface-dark"
-          
+        />
+      </div>
+      <div class="mb-4">
+        <label for="propertyInfo" class="label text-lg">Property Description</label>
+        <input
+          bind:value={propertyInfo}
+          type="text"
+          id="propertyInfo"
+          name="PropertyInfo"
+          class="input input-bordered input-sm w-full max-w-xs bg-surface-light dark:bg-surface-dark"
+          placeholder="Enter property info like address, city, etc."
         />
       </div>
       <div class="mb-4">

@@ -11,7 +11,7 @@
 
   const mapOptions: MapOptions = {
     center: [latitude, longitude],
-    zoom: 5,
+    zoom: 15,
     zoomControl: false,
     attributionControl: false,
   };
@@ -19,7 +19,7 @@
   const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
   const tileLayerOptions: TileLayerOptions = {
     minZoom: 5,
-    maxZoom: 7,
+    maxZoom: 20,
   };
 
   function updateMarker() {

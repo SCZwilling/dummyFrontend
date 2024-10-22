@@ -8,12 +8,10 @@ export const load: PageServerLoad = async ({ locals }) => {
 };
 
 function validateEmail(email: string) {
-  // if (
-  //   !email.match(
-  //     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
-  //   )
-  // )
-  //   return { error: "Invalid email address", email: null };
+  if (
+    !email.match(/^[6-9]\d{9}$/)
+  )
+    return { error: "Invalid Phone Number. Please enter a valid 10-digit phone", email: null };
   return { error: null, phoneNumber: email.trim() };
 }
 
@@ -66,7 +64,7 @@ export const actions: Actions = {
 
     if (status === 400) return fail(400, { error: "Invalid data" });
 
-    if (status === 409) return fail(409, { error: "Username or email already in use" });
+    if (status === 409) return fail(409, { error: "Username or phone number already in use" });
     return fail(500, { error: "An error occurred, please try again later" });
   },
 };
