@@ -7,14 +7,17 @@ WORKDIR /app
 # Copy the package.json and package-lock.json files
 COPY package.json package-lock.json ./
 
-# Install dependencies
+# Install the dependencies
 RUN npm install
 
 # Copy the rest of the application code
 COPY . .
 
-# Expose the port that the application will run on
-EXPOSE 5173
+# Build the SvelteKit application
+RUN npm run build
 
-# Command to start the development server
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+# Expose the port the application will run on
+EXPOSE 4173
+
+# Command to start the production server
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0"]
