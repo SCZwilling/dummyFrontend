@@ -1,0 +1,74 @@
+volumes:
+  mssqlvolume:
+
+services:
+  backend:
+    build: 
+      context: ./backend_prod
+      dockerfile: Dockerfile
+    image: pakkasauda-back
+    container_name: pakkasauda-back
+    ports:
+      - "5000:5000"
+    environment:
+      - ConnectionStrings__RealEstate=${ConnectionStrings__RealEstate}
+      - ConnectionStrings__RealEstateIdentity=${ConnectionStrings__RealEstateIdentity}
+      - JWT__ValidAudience=${JWT__ValidAudience}
+      - JWT__ValidIssuer=${JWT__ValidIssuer}
+      - JWT__Secret=${JWT__Secret}
+      - Credentials__AdminPhone=${Credentials__AdminPhone}
+      - Credentials__AdminPassword=${Credentials__AdminPassword}
+      - ApplyMigrationsOnBoot=${ApplyMigrationsOnBoot}
+      # - ASPNETCORE_URLS=http://0.0.0.0:80
+    depends_on:
+      - sql
+    restart: always
+    networks:
+      - shared_network
+
+  sql:
+    image: "mcr.microsoft.com/mssql/server"
+    container_name: ms-sql-db
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=y
+      - SA_PASSWORD=${SA_PASSWORD}
+    volumes:
+      - mssqlvolume:/var/opt/mssql
+    networks:
+      - shared_network
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pakkasauda-front
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - shared_network
+  
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.prod.conf:/etc/nginx/nginx.conf
+      - ./mimes.types:/etc/nginx/mimes.types
+      - .frontend/SvelteRE/build:/usr/share/nginx/html
+    depends_on:
+      - frontend
+    networks:
+      - shared_network
+
+networks:
+  shared_network:
+    external: true
+

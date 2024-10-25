@@ -1,5 +1,7 @@
 services:
-  svelte-app:
+  frontend:
+    image: pakkasauda-front
+    container_name: pakkasauda-front
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,6 +12,20 @@ services:
     # volumes:
     #   - .:/app
     #   - /app/node_modules
+    networks:
+      - shared_network
+  
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./mimes.types:/etc/nginx/mimes.types
+      - .SvelteRE/build:/usr/share/nginx/html
+    depends_on:
+      - frontend
     networks:
       - shared_network
 
